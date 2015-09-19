@@ -6,6 +6,7 @@
 	<body ng-app='app'>
 		<div ng-controller="PostsCtrl" class='container'>
 			<h1>Recent Posts</h1>
+			<input ng-model="postBody" class='form-control' />
 			<button ng-click='addPost()' class='btn btn-default'>Add Post</button>
 			<ul class='list-group'>
 				<li ng-repeat="post in posts" class='list-group-item'>
@@ -29,11 +30,15 @@
 					}
 				]
 				
-				$scope.addPost = function () {
-					$scope.posts.unshift({
-						username: 'mjcdev',
-						body: 'adding a post'
-					})
+				$scope.addPost = function () {					
+					if($scope.postBody)
+					{
+						$scope.posts.unshift({
+							username: 'mjcdev',
+							body: $scope.postBody
+						})
+						$scope.postBody = null
+					}
 				}
 			})			
 		</script>
